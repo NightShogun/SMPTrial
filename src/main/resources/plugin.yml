@@ -1,0 +1,6 @@
+name: SMPTrial
+main: xyz.nightshogun.smptrial.TrialSMP
+version: %version%
+description: SMP Trial
+author: NightShogun
+api-version: 1.18
