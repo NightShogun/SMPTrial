@@ -35,14 +35,14 @@ public class SpiralParticle implements Effect {
                 Particle.DustOptions options = new Particle.DustOptions(color, 1);
                 Location center = ((TrialPlayer)participant).getHandle().getLocation().clone();
 
-                double radius = 1.5;
+                double radius = 1.0;
                 double heightOffset = 0.5;
-                int particlesPerLoop = 20;
+                int particlesPerLoop = 60;
 
                 for (int i = 0; i < particlesPerLoop; i++) {
 
-                    double theta = angle + (2 * Math.PI * i / particlesPerLoop);
-                    double currentRadius = radius + theta * 0.1;
+                    double theta = angle + (6 * Math.PI * i / particlesPerLoop);
+                    double currentRadius = radius + theta * 0.01;
                     double x = currentRadius * Math.cos(theta);
                     double z = currentRadius * Math.sin(theta);
                     double y = heightOffset + theta * 0.1;
@@ -50,15 +50,14 @@ public class SpiralParticle implements Effect {
                     Location particleLoc = center.add(x, y, z);
                     Objects.requireNonNull(center.getWorld()).spawnParticle(
                             Particle.REDSTONE, particleLoc, 1, 0, 0, 0, 0, options);
-                    System.out.println("[DEBUG] Spawning particle at " + particleLoc);
                     center.subtract(x, y, z);
                 }
 
-                angle += 0.2;
-                if (angle > 2 * Math.PI) angle = 0;
+                angle += 0.1;
+                if (angle > (2 * Math.PI)) angle = 0;
 
             }
-        }.runTaskTimerAsynchronously(TrialSMP.getInstance(), 0L, 20);
+        }.runTaskTimerAsynchronously(TrialSMP.getInstance(), 0L, 1);
 
         isActive = true;
 
